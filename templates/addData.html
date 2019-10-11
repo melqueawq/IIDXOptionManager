@@ -45,14 +45,14 @@
     </form>
 </div>
 <script>
-    window.onload = function () {
+    window.onload = () => {
         M.AutoInit();
         var elems = document.querySelectorAll("input[type=range]");
         M.Range.init(elems);
-        $(document).on('input', '#slider', function () {
+        $(document).on('input', '#slider', () => {
             $('#sliderValue').val($(this).val());
         });
-        $(document).ready(function () {
+        $(document).ready(() => {
             let j = {{json|tojson}}
             $('input.autocomplete').autocomplete({
                 data: {
@@ -60,19 +60,20 @@
                         '{{shopname}}': null,
                     {% endfor %}
                 },
-                onAutocomplete: function(txt){
+                onAutocomplete: (txt) => {
                     if($('#mNumber').val() in j[txt]){
                         $('#suddenValue').val(j[txt][$('#mNumber').val()]['sudden']);
                         $('#hiddenValue').val(j[txt][$('#mNumber').val()]['hidden']);
                         $('#greenValue').val(j[txt][$('#mNumber').val()]['green']);
                         $('#slider').val(j[txt][$('#mNumber').val()]['adjust']);
                         $('#sliderValue').val(j[txt][$('#mNumber').val()]['adjust']);
+                        M.updateTextFields();
                     }
                 },
                 limit: 10,
             });
 
-            $('#mNumber').change(function(){
+            $('#mNumber').change(() => {
                 let ival = $('input.autocomplete').val()
                 if(ival in j && $('#mNumber').val() in j[ival]){
                     $('#suddenValue').val(j[ival][$('#mNumber').val()]['sudden']);
@@ -80,10 +81,10 @@
                     $('#greenValue').val(j[ival][$('#mNumber').val()]['green']);
                     $('#slider').val(j[ival][$('#mNumber').val()]['adjust']);
                     $('#sliderValue').val(j[ival][$('#mNumber').val()]['adjust']);
+                    M.updateTextFields();
                 }
-            })
+            });
         });
-
     };
 </script>
 {% endblock %}
