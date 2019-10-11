@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="container">
+    <form action="/add" method="POST">
+
+        <div class="row">
+            <div class="input-field col s12 m8">
+                <input type="text" name="shopName" id="shopName">
+                <label for="shopName">Shop Name</label>
+            </div>
+            <div class="input-field col s12 m4">
+                <input type="text" name="mNumber" id="mNumber">
+                <label for="mNumber">Machine Number</label>
+            </div>
+            <div class="input-field col s12 m4">
+                <input type="text" name="suddenValue" id="suddenValue">
+                <label for="suddenValue">SUD+ Value</label>
+            </div>
+            <div class="input-field col s12 m4">
+                <input type="text" name="hiddenValue" id="hiddenValue">
+                <label for="hiddenValue">LIFT/HID+ Value</label>
+            </div>
+            <div class="input-field col s12 m4">
+                <input type="text" name="greenValue" id="greenValue">
+                <label for="greenValue">Green Value</label>
+            </div>
+            <div class="range-field col s12 m8">
+                <label for="slider">Adjustment</label>
+                <input type="range" name="adjustment" min="-2.0" max="2.0" step="0.05" id="slider">
+            </div>
+            <div class="input-field col s12 m4">
+                <input disabled type="text" id="slider_value" placeholder="0">
+            </div>
+            <div class="input-field col s12">
+                <select name="health">
+                    <option value="1">&#128522; Good</option>
+                    <option value="2">&#128528; So-so</option>
+                    <option value="3">&#128532; Bad</option>
+                </select>
+                <label>Your Health</label>
+            </div>
+        </div>
+        <button type="submit" class="btn">Submit</button>
+    </form>
+</div>
+<script>
+    window.onload = function () {
+        M.AutoInit();
+        var elems = document.querySelectorAll("input[type=range]");
+        M.Range.init(elems);
+        $(document).on('input', '#slider', function () {
+            $('#slider_value').val($(this).val());
+        });
+    };
+</script>
+{% endblock %}
