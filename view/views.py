@@ -2,7 +2,8 @@
 # -*- coding:utf-8 -*-
 
 from flask import render_template, redirect, url_for, request, session
-from view._app import app
+from ._app import app
+from .twmng import twitter_api
 import json
 
 
@@ -15,6 +16,10 @@ def index():
 def addData():
     if('username' not in session):
         return redirect(url_for('loginerr'))
+
+    with open('user.json', 'r') as f:
+        j = json.load(f)
+
     return render_template('addData.html')
 
 
@@ -25,13 +30,39 @@ def loginerr():
 
 @app.route('/login')
 def login():
-    session['username'] = 'uname'
+
+    tw = twitter_api()
+    oauth_url, oauth_token, oauth_secret = tw.request_token(request.host_url)
+    session['oauth_token'] = oauth_token
+    session['oauth_secret'] = oauth_secret
+    return redirect(oauth_url)
+
+
+@app.route('/oauth_callback')
+def oauth_login():
+    oauth_verifier = request.args.get('oauth_verifier')
+    tw = twitter_api()
+
+    oauth_token, oauth_secret = tw.get_oauth_token(
+        session['oauth_token'], session['oauth_secret'], oauth_verifier)
+
+    session['oauth_token'] = oauth_token
+    session['oauth_secret'] = oauth_secret
+    tw.login_twitter_oauth(oauth_token, oauth_secret)
+
+    # アカウント情報取得
+    screen_name, profile_image_url = tw.get_account()
+    session['screen_name'] = screen_name
+
     return redirect(url_for('index'))
 
 
 @app.route('/logout')
 def logout():
-    session.pop('username', None)
+    if('oauth_token' in session):
+        session.pop('oauth_token', None)
+        session.pop('oauth_secret', None)
+        session.pop('screen_name', None)
     return redirect(url_for('index'))
 
 

@@ -40,4 +40,8 @@ class twitter_api:
         self.api = twitter.Twitter(
             auth=twitter.OAuth(oauth_token, oauth_secret,
                                CONSUMER_KEY, CONSUMER_SECRET))
+
+    def get_account(self):
+        status = self.api.account.verify_credentials(skip_status=True)
+        return status['screen_name'], status['profile_image_url_https']
 # end of class twitter_api

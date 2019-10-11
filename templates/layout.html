@@ -26,7 +26,7 @@
         <li><a href="/addData">Add Data</a></li>
         <li><a href="#">Shops</a></li>
         <li><a href="#">Stats</a></li>
-        {% if 'username' in session %}
+        {% if 'screen_name' in session %}
         <li><a href="/logout">Logout</a></li>
         {% else %}
         <li><a href="/login">Login</a></li>
@@ -43,7 +43,7 @@
     <li><a href="/addData"><i class="material-icons">add_circle_outline</i>Add Data</a></li>
     <li><a href="#"><i class="material-icons">home</i>Shops</a></li>
     <li><a href="#"><i class="material-icons">account_circle</i>Stats</a></li>
-    {% if 'username' in session %}
+    {% if 'screen_name' in session %}
     <li><a href="/logout"><i class="material-icons">exit_to_app</i>Logout</a></li>
     {% else %}
     <li><a href="/login"><i class="material-icons">exit_to_app</i>Login</a></li>

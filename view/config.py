@@ -5,6 +5,6 @@ from dotenv import load_dotenv
 dotenv_path = join(dirname(__file__), '.env')
 load_dotenv(dotenv_path)
 
-# CONSUMER_KEY = os.environ.get("CONSUMER_KEY")
-# CONSUMER_SECRET = os.environ.get("CONSUMER_SECRET")
-# SECRET_KEY = os.environ.get("SECRET_KEY")
+CONSUMER_KEY = os.environ.get("CONSUMER_KEY")
+CONSUMER_SECRET = os.environ.get("CONSUMER_SECRET")
+SECRET_KEY = os.environ.get("SECRET_KEY")
