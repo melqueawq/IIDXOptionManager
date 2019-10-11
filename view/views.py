@@ -5,6 +5,7 @@ from flask import render_template, redirect, url_for, request, session
 from ._app import app
 from .twmng import twitter_api
 import json
+import os
 
 
 @app.route('/')
@@ -14,13 +15,13 @@ def index():
 
 @app.route('/addData', methods=['GET'])
 def addData():
-    if('username' not in session):
+    if('screen_name' not in session):
         return redirect(url_for('loginerr'))
 
-    with open('user.json', 'r') as f:
+    with open('json/' + session['screen_name'] + '.json', 'r') as f:
         j = json.load(f)
 
-    return render_template('addData.html')
+    return render_template('addData.html', json=j)
 
 
 @app.route('/loginerr')
@@ -54,6 +55,11 @@ def oauth_login():
     screen_name, profile_image_url = tw.get_account()
     session['screen_name'] = screen_name
 
+    if not os.path.exists('json/' + session['screen_name'] + '.json'):
+        with open('json/' + session['screen_name'] + '.json', 'w') as f:
+            j = {}
+            json.dump(j, f)
+
     return redirect(url_for('index'))
 
 
@@ -77,7 +83,7 @@ def add():
     health = request.form['health']
 
     print(health)
-    with open('json/data.json', 'r') as f:
+    with open('json/' + session['screen_name'] + '.json', 'r') as f:
         j = json.load(f)
 
     if shop not in j:
@@ -89,7 +95,7 @@ def add():
     j[shop][machine]['hidden'] = hidden
     j[shop][machine]['green'] = green
 
-    with open('json/data.json', 'w') as f:
+    with open('json/' + session['screen_name'] + '.json', 'w') as f:
         json.dump(j, f)
 
     return redirect(url_for('index'))

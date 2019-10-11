@@ -6,7 +6,7 @@
 
         <div class="row">
             <div class="input-field col s12 m8">
-                <input type="text" name="shopName" id="shopName">
+                <input type="text" name="shopName" id="shopName" class="autocomplete">
                 <label for="shopName">Shop Name</label>
             </div>
             <div class="input-field col s12 m4">
@@ -30,7 +30,7 @@
                 <input type="range" name="adjustment" min="-2.0" max="2.0" step="0.05" id="slider">
             </div>
             <div class="input-field col s12 m4">
-                <input disabled type="text" id="slider_value" placeholder="0">
+                <input disabled type="text" id="sliderValue" placeholder="0">
             </div>
             <div class="input-field col s12">
                 <select name="health">
@@ -50,8 +50,40 @@
         var elems = document.querySelectorAll("input[type=range]");
         M.Range.init(elems);
         $(document).on('input', '#slider', function () {
-            $('#slider_value').val($(this).val());
+            $('#sliderValue').val($(this).val());
         });
+        $(document).ready(function () {
+            let j = {{json|tojson}}
+            $('input.autocomplete').autocomplete({
+                data: {
+                    {% for shopname in json.keys() %}
+                        '{{shopname}}': null,
+                    {% endfor %}
+                },
+                onAutocomplete: function(txt){
+                    if($('#mNumber').val() in j[txt]){
+                        $('#suddenValue').val(j[txt][$('#mNumber').val()]['sudden']);
+                        $('#hiddenValue').val(j[txt][$('#mNumber').val()]['hidden']);
+                        $('#greenValue').val(j[txt][$('#mNumber').val()]['green']);
+                        $('#slider').val(j[txt][$('#mNumber').val()]['adjust']);
+                        $('#sliderValue').val(j[txt][$('#mNumber').val()]['adjust']);
+                    }
+                },
+                limit: 10,
+            });
+
+            $('#mNumber').change(function(){
+                let ival = $('input.autocomplete').val()
+                if(ival in j && $('#mNumber').val() in j[ival]){
+                    $('#suddenValue').val(j[ival][$('#mNumber').val()]['sudden']);
+                    $('#hiddenValue').val(j[ival][$('#mNumber').val()]['hidden']);
+                    $('#greenValue').val(j[ival][$('#mNumber').val()]['green']);
+                    $('#slider').val(j[ival][$('#mNumber').val()]['adjust']);
+                    $('#sliderValue').val(j[ival][$('#mNumber').val()]['adjust']);
+                }
+            })
+        });
+
     };
 </script>
 {% endblock %}
