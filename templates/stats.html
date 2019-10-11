@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="container">
+    <ul class="collapsible">
+    {% for shopname, val in json.items() %}
+        <li>
+            <div class="collapsible-header"><i class="material-icons">place</i>{{shopname}}</div>
+            <div class="collapsible-body">
+            {% for mnumber, options in val.items() %}
+                <b>machine {{mnumber}}</b>
+                <table class="striped">
+                    <tr>
+                        <th>緑数字</th><td>{{options['green']}}</td>
+                    </tr>
+                    <tr>
+                        <th>SUD+</th><td>{{options['sudden']}}</td>
+                    </tr>
+                    <tr>
+                        <th>LIFT/HID+</th><td>{{options['hidden']}}</td>
+                    </tr>
+                    <tr>
+                        <th>判定位置</th><td>{{options['adjust']}}</td>
+                    </tr>
+                </table>
+            {% endfor %}
+            </div>
+        </li>
+    {% endfor %}
+    </ul>
+</div>
+<script>
+    $(document).ready(function(){
+        $('.collapsible').collapsible();
+    });
+</script>
+{% endblock %}

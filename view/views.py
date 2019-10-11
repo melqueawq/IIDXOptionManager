@@ -24,6 +24,17 @@ def addData():
     return render_template('addData.html', json=j)
 
 
+@app.route('/stats', methods=['GET'])
+def stats():
+    if('screen_name' not in session):
+        return redirect(url_for('loginerr'))
+
+    with open('json/' + session['screen_name'] + '.json', 'r') as f:
+        j = json.load(f)
+
+    return render_template('stats.html', json=j)
+
+
 @app.route('/loginerr')
 def loginerr():
     return render_template('loginerr.html')
