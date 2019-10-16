@@ -10,8 +10,8 @@
                 <label for="shopName">Shop Name</label>
             </div>
             <div class="input-field col s12 m4">
-                <input type="text" name="mNumber" id="mNumber">
-                <label for="mNumber">Machine Number</label>
+                <input type="text" name="mName" id="mName">
+                <label for="mName">Machine Name</label>
             </div>
             <div class="input-field col s12 m4">
                 <input type="text" name="suddenValue" id="suddenValue">
@@ -61,26 +61,26 @@
                     {% endfor %}
                 },
                 onAutocomplete: (txt) => {
-                    if($('#mNumber').val() in j[txt]){
-                        $('#suddenValue').val(j[txt][$('#mNumber').val()]['sudden']);
-                        $('#hiddenValue').val(j[txt][$('#mNumber').val()]['hidden']);
-                        $('#greenValue').val(j[txt][$('#mNumber').val()]['green']);
-                        $('#slider').val(j[txt][$('#mNumber').val()]['adjust']);
-                        $('#sliderValue').val(j[txt][$('#mNumber').val()]['adjust']);
+                    if($('#mName').val() in j[txt]){
+                        $('#suddenValue').val(j[txt][$('#mName').val()]['sudden']);
+                        $('#hiddenValue').val(j[txt][$('#mName').val()]['hidden']);
+                        $('#greenValue').val(j[txt][$('#mName').val()]['green']);
+                        $('#slider').val(j[txt][$('#mName').val()]['adjust']);
+                        $('#sliderValue').val(j[txt][$('#mName').val()]['adjust']);
                         M.updateTextFields();
                     }
                 },
                 limit: 10,
             });
 
-            $('#mNumber').change(() => {
+            $('#mName').change(() => {
                 let ival = $('input.autocomplete').val()
-                if(ival in j && $('#mNumber').val() in j[ival]){
-                    $('#suddenValue').val(j[ival][$('#mNumber').val()]['sudden']);
-                    $('#hiddenValue').val(j[ival][$('#mNumber').val()]['hidden']);
-                    $('#greenValue').val(j[ival][$('#mNumber').val()]['green']);
-                    $('#slider').val(j[ival][$('#mNumber').val()]['adjust']);
-                    $('#sliderValue').val(j[ival][$('#mNumber').val()]['adjust']);
+                if(ival in j && $('#mName').val() in j[ival]){
+                    $('#suddenValue').val(j[ival][$('#mName').val()]['sudden']);
+                    $('#hiddenValue').val(j[ival][$('#mName').val()]['hidden']);
+                    $('#greenValue').val(j[ival][$('#mName').val()]['green']);
+                    $('#slider').val(j[ival][$('#mName').val()]['adjust']);
+                    $('#sliderValue').val(j[ival][$('#mName').val()]['adjust']);
                     M.updateTextFields();
                 }
             });

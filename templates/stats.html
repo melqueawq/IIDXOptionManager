@@ -7,9 +7,13 @@
         <li>
             <div class="collapsible-header"><i class="material-icons">place</i>{{shopname}}</div>
             <div class="collapsible-body">
-            {% for mnumber, options in val.items() %}
-                <b>machine {{mnumber}}</b>
-                <table class="striped">
+            {% for mname, options in val.items() %}
+                <div class="card-panel">
+                    
+                    <table class="striped">
+                    <tr>
+                        <th colspan="2" class="center-align">{{mname}}</th>
+                    </tr>
                     <tr>
                         <th>緑数字</th><td>{{options['green']}}</td>
                     </tr>
@@ -22,7 +26,16 @@
                     <tr>
                         <th>判定位置</th><td>{{options['adjust']}}</td>
                     </tr>
+                    <tr>
+                        <td></td>
+                        <td class="right-align">
+                            <a href="/edit?sn={{shopname}}&mn={{mname}}" class="btn-small white black-text">編集</a>
+                            <a href="#" class="btn-small white black-text">削除</a>
+                        </td>
+                    </tr>
                 </table>
+                </div>
+                
             {% endfor %}
             </div>
         </li>

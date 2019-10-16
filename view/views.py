@@ -24,6 +24,11 @@ def addData():
     return render_template('addData.html', json=j)
 
 
+@app.route('/edit')
+def editData():
+    return render_template('addData.html', json=j)
+
+
 @app.route('/stats', methods=['GET'])
 def stats():
     if('screen_name' not in session):
@@ -86,7 +91,7 @@ def logout():
 @app.route('/add', methods=['POST'])
 def add():
     shop = request.form['shopName']
-    machine = request.form['mNumber']
+    machine = request.form['mName']
     adjust = request.form['adjustment']
     sudden = request.form['suddenValue']
     hidden = request.form['hiddenValue']
