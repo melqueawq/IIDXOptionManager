@@ -21,8 +21,6 @@ def addData():
     with open('json/' + session['screen_name'] + '.json', 'r') as f:
         j = json.load(f)
 
-    print(j)
-
     return render_template('addData.html', json=j)
 
 
@@ -35,12 +33,27 @@ def editData():
 
     option = j[shopName][machineName]
 
-    print(option)
-
     return render_template('editData.html',
                            shopName=shopName,
                            machineName=machineName,
                            option=option)
+
+
+@app.route('/delete')
+def delete():
+    shopName = request.args.get('sn')
+    machineName = request.args.get('mn')
+    with open('json/' + session['screen_name'] + '.json', 'r') as f:
+        j = json.load(f)
+
+    j[shopName].pop(machineName)
+    if len(j[shopName]) == 0:
+        j.pop[shopName]
+
+    with open('json/' + session['screen_name'] + '.json', 'w') as f:
+        json.dump(j, f)
+
+    return redirect(url_for('stats'))
 
 
 @app.route('/stats', methods=['GET'])
@@ -90,7 +103,7 @@ def oauth_login():
             j = {}
             json.dump(j, f)
 
-    return redirect(url_for('index'))
+    return redirect(url_for('stats'))
 
 
 @app.route('/logout')
@@ -112,11 +125,9 @@ def add():
     sudden = request.form['suddenValue']
     hidden = request.form['hiddenValue']
     green = request.form['greenValue']
-    health = request.form['health']
 
     machine_before = request.form['mName_before'] if 'mName_before' in request.form else None
 
-    print(health)
     with open('json/' + session['screen_name'] + '.json', 'r') as f:
         j = json.load(f)
 
@@ -135,4 +146,4 @@ def add():
     with open('json/' + session['screen_name'] + '.json', 'w') as f:
         json.dump(j, f)
 
-    return redirect(url_for('index'))
+    return redirect(url_for('stats'))
