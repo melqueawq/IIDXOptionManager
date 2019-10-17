@@ -21,12 +21,26 @@ def addData():
     with open('json/' + session['screen_name'] + '.json', 'r') as f:
         j = json.load(f)
 
+    print(j)
+
     return render_template('addData.html', json=j)
 
 
-@app.route('/edit')
+@app.route('/editData')
 def editData():
-    return render_template('addData.html', json=j)
+    shopName = request.args.get('sn')
+    machineName = request.args.get('mn')
+    with open('json/' + session['screen_name'] + '.json', 'r') as f:
+        j = json.load(f)
+
+    option = j[shopName][machineName]
+
+    print(option)
+
+    return render_template('editData.html',
+                           shopName=shopName,
+                           machineName=machineName,
+                           option=option)
 
 
 @app.route('/stats', methods=['GET'])
@@ -90,6 +104,8 @@ def logout():
 
 @app.route('/add', methods=['POST'])
 def add():
+    print(request.form)
+
     shop = request.form['shopName']
     machine = request.form['mName']
     adjust = request.form['adjustment']
@@ -98,12 +114,17 @@ def add():
     green = request.form['greenValue']
     health = request.form['health']
 
+    machine_before = request.form['mName_before'] if 'mName_before' in request.form else None
+
     print(health)
     with open('json/' + session['screen_name'] + '.json', 'r') as f:
         j = json.load(f)
 
     if shop not in j:
         j[shop] = {}
+
+    if machine_before is not None:
+        j[shop].pop(machine_before)
 
     j[shop][machine] = {}
     j[shop][machine]['adjust'] = adjust
