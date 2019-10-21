@@ -30,7 +30,7 @@
                         <td></td>
                         <td class="right-align">
                             <a href="/editData?sn={{shopname}}&mn={{mname}}" class="btn-small white black-text">編集</a>
-                            <a href="/delete?sn={{shopname}}&mn={{mname}}" class="btn-small white black-text">削除</a>
+                            <a href="/delete?sn={{shopname}}&mn={{mname}}" class="btn-small white black-text deletebtn">削除</a>
                         </td>
                     </tr>
                 </table>
@@ -45,6 +45,12 @@
 <script>
     $(document).ready(function(){
         $('.collapsible').collapsible();
+
+        $('.deletebtn').click(()=>{
+            if(!confirm('削除してもよろしいですか？')){
+                return false;
+            }
+        })
     });
 </script>
 {% endblock %}

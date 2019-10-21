@@ -48,7 +48,7 @@ def delete():
 
     j[shopName].pop(machineName)
     if len(j[shopName]) == 0:
-        j.pop[shopName]
+        j.pop(shopName)
 
     with open('json/' + session['screen_name'] + '.json', 'w') as f:
         json.dump(j, f)
