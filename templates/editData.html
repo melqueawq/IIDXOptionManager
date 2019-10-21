@@ -46,7 +46,7 @@
         M.Range.init(elems);
         $('#sliderValue').val($('#slider').val());
         $(document).on('input', '#slider', () => {
-            $('#sliderValue').val($(this).val());
+            $('#sliderValue').val($('#slider').val());
         });
     };
 </script>

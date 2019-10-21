@@ -42,7 +42,7 @@
         var elems = document.querySelectorAll("input[type=range]");
         M.Range.init(elems);
         $(document).on('input', '#slider', () => {
-            $('#sliderValue').val($(this).val());
+            $('#sliderValue').val($('#slider').val());
         });
         $(document).ready(() => {
             let j = {{json|tojson}}
