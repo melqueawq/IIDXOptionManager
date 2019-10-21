@@ -2,6 +2,9 @@
 {% block content %}
 
 <div class="container">
+    {% if not json%}
+        <p>データがありません！</p>
+    {% else %}
     <ul class="collapsible">
     {% for shopname, val in json.items() %}
         <li>
@@ -41,6 +44,8 @@
         </li>
     {% endfor %}
     </ul>
+    {% endif %}
+    <a href="/addData" class="btn">新しい筐体情報を追加</a>
 </div>
 <script>
     $(document).ready(function(){

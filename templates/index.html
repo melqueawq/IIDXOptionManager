@@ -1,8 +1,21 @@
 {% extends "layout.html" %}
 {% block content %}
-
-<div class="container">
-
+<style>
+    .btn-large {
+        text-transform: none;
+    }
+</style>
+<div class="center-align grey lighten-3" style="padding:10px;">
+    <h3>IIDXのオプションを効率的に管理</h3>
+    <p>店舗、筐体ごとに異なる判定位置やハイスピードオプションを見やすく管理することができます。</p>
+    <a href="/login" class="btn-large">Twitterでログイン</a>
 </div>
 
+<div class="container">
+</div>
+<script>
+    $(document).ready(function () {
+        $('.parallax').parallax();
+    });
+</script>
 {% endblock %}

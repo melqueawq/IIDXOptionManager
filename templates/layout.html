@@ -21,7 +21,11 @@
 <body>
   <nav>
     <div class="nav-wrapper black">
-      <a href="#" class="brand-logo">IIDXOptionManager</a>
+      {% if 'screen_name' in session %}
+      <a href="/stats" class="brand-logo">IIDXOptionManager</a>
+      {% else %}
+      <a href="/" class="brand-logo">IIDXOptionManager</a>
+      {% endif %}
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li><a href="/addData">Add Data</a></li>
         <li><a href="/stats">Stats</a></li>
@@ -41,7 +45,6 @@
   <ul id="slide-out" class="sidenav">
     <li><a class="subheader">IIDXOptionManager MENU</a></li>
     <li><a href="/addData"><i class="material-icons">add_circle_outline</i>Add Data</a></li>
-    <li><a href="#"><i class="material-icons">home</i>Shops</a></li>
     <li><a href="/stats"><i class="material-icons">account_circle</i>Stats</a></li>
     {% if 'screen_name' in session %}
     <li><a href="/logout"><i class="material-icons">exit_to_app</i>Logout</a></li>
