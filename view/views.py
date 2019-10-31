@@ -69,6 +69,11 @@ def stats():
     return render_template('stats.html', json=j)
 
 
+@app.route('/sommelier')
+def sommelier():
+    return render_template('sommelier.html')
+
+
 @app.route('/loginerr')
 def loginerr():
     return render_template('loginerr.html')
