@@ -71,7 +71,15 @@ def stats():
 
 @app.route('/sommelier')
 def sommelier():
-    return render_template('sommelier.html')
+    if('screen_name' not in session):
+        return redirect(url_for('loginerr'))
+
+    with open('json/' + session['screen_name'] + '.json', 'r') as f:
+        j = json.load(f)
+
+    like = {'1': '好き', '2': '普通', '3': '嫌い'}
+
+    return render_template('sommelier.html', json=j, like=like)
 
 
 @app.route('/loginerr')

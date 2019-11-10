@@ -2,7 +2,58 @@
 {% block content %}
 
 <div class="container">
-    
-</div>
+    {% if not json%}
+    <p>データがありません！</p>
+    {% else %}
+    <ul class="collapsible">
+        {% for shopname, val in json.items() %}
+        <li>
+            <div class="collapsible-header"><i class="material-icons">place</i>{{shopname}}</div>
+            <div class="collapsible-body">
+                {% for mname, options in val.items() %}
+                <div class="card-panel">
 
+                    <table class="striped">
+                        <tr>
+                            <th colspan="2" class="center-align">{{mname}}</th>
+                        </tr>
+                        <tr>
+                            <th>ボタン</th>
+                            <td>{{options['button']}}</td>
+                        </tr>
+                        <tr>
+                            <th>バネ</th>
+                            <td>{{options['spring']}}</td>
+                        </tr>
+                        <tr>
+                            <th>好み</th>
+                            <td>{{like[options['like']]}}</td>
+                        </tr>
+                        <tr>
+                            <th>メモ</th>
+                            <td>{{options['impression']}}</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td class="right-align">
+                                <a href="/editData?sn={{shopname}}&mn={{mname}}"
+                                   class="btn-small white black-text">編集</a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                {% endfor %}
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <a href="/addData" class="btn">新しい筐体情報を追加</a>
+</div>
+<script>
+    $(document).ready(function () {
+        $('.collapsible').collapsible();
+    });
+</script>
 {% endblock %}
