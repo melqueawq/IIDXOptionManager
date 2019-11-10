@@ -133,6 +133,11 @@ def add():
     hidden = request.form['hiddenValue']
     green = request.form['greenValue']
 
+    spring = request.form['springWeight']
+    button = request.form['buttonWeight']
+    like = request.form['like']
+    impression = request.form['impression']
+
     machine_before = request.form['mName_before'] if 'mName_before' in request.form else None
 
     with open('json/' + session['screen_name'] + '.json', 'r') as f:
@@ -149,6 +154,10 @@ def add():
     j[shop][machine]['sudden'] = sudden
     j[shop][machine]['hidden'] = hidden
     j[shop][machine]['green'] = green
+    j[shop][machine]['spring'] = spring
+    j[shop][machine]['button'] = button
+    j[shop][machine]['like'] = like
+    j[shop][machine]['impression'] = impression
 
     with open('json/' + session['screen_name'] + '.json', 'w') as f:
         json.dump(j, f)

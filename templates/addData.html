@@ -32,9 +32,9 @@
             <div class="input-field col s12 m4">
                 <input disabled type="text" id="sliderValue" placeholder="0">
             </div>
-
-            <hr>
-
+        </div>
+            <div class="divider"></div>
+        <div class="row">
             <div class="input-field col s12 m4">
                 <input type="text" name="springWeight" id="springWeight">
                 <label for="springWeight">バネ</label>
@@ -44,7 +44,7 @@
                 <label for="buttonWeight">ボタン</label>
             </div>
             <div class="input-field col s12 m4">
-                <select name="like">
+                <select name="like" id="like">
                     <option value="1">&#128522; 好き</option>
                     <option value="2">&#128528; 普通</option>
                     <option value="3">&#128532; 嫌い</option>
@@ -53,7 +53,7 @@
             </div>
             
             <div class="input-field col s12">
-                <textarea name="impression" id="impression">
+                <textarea name="impression" id="impression" class='materialize-textarea'></textarea>
                 <label for="impression">メモ</label>
             </div>
         </div>
@@ -63,6 +63,7 @@
 <script>
     window.onload = () => {
         M.AutoInit();
+        $('.dropdown-trigger').dropdown();
         var elems = document.querySelectorAll("input[type=range]");
         M.Range.init(elems);
         $(document).on('input', '#slider', () => {
@@ -83,6 +84,10 @@
                         $('#greenValue').val(j[txt][$('#mName').val()]['green']);
                         $('#slider').val(j[txt][$('#mName').val()]['adjust']);
                         $('#sliderValue').val(j[txt][$('#mName').val()]['adjust']);
+                        $('#springWeight').val(j[txt][$('#mName').val()]['spring']);
+                        $('#buttonWeight').val(j[txt][$('#mName').val()]['button']);
+                        $('#like').val(j[txt][$('#mName').val()]['like']);
+                        $('#impression').val(j[txt][$('#mName').val()]['impression']);
                         M.updateTextFields();
                     }
                 },
@@ -97,6 +102,11 @@
                     $('#greenValue').val(j[ival][$('#mName').val()]['green']);
                     $('#slider').val(j[ival][$('#mName').val()]['adjust']);
                     $('#sliderValue').val(j[ival][$('#mName').val()]['adjust']);
+                    $('#springWeight').val(j[ival][$('#mName').val()]['spring']);
+                    $('#buttonWeight').val(j[ival][$('#mName').val()]['button']);
+                    $('#like').val(j[ival][$('#mName').val()]['like']);
+                    $('#impression').val(j[ival][$('#mName').val()]['impression']);
+
                     M.updateTextFields();
                 }
             });
