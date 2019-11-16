@@ -1,58 +1,74 @@
 {% extends "layout.html" %}
 {% block content %}
+<style>
+    .col>.btn-small {
+        width: 100%;
+    }
+</style>
 
 <div class="container">
     {% if not json%}
-        <p>データがありません！</p>
+    <p>データがありません！</p>
     {% else %}
     <ul class="collapsible">
-    {% for shopname, val in json.items() %}
+        {% for shopname, val in json.items() %}
         <li>
             <div class="collapsible-header"><i class="material-icons">place</i>{{shopname}}</div>
             <div class="collapsible-body">
-            {% for mname, options in val.items() %}
+                {% for mname, options in val.items() %}
                 <div class="card-panel">
-                    
+
                     <table class="striped">
-                    <tr>
-                        <th colspan="2" class="center-align">{{mname}}</th>
-                    </tr>
-                    <tr>
-                        <th>緑数字</th><td>{{options['green']}}</td>
-                    </tr>
-                    <tr>
-                        <th>SUD+</th><td>{{options['sudden']}}</td>
-                    </tr>
-                    <tr>
-                        <th>LIFT/HID+</th><td>{{options['hidden']}}</td>
-                    </tr>
-                    <tr>
-                        <th>判定位置</th><td>{{options['adjust']}}</td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td class="right-align">
+                        <tr>
+                            <th colspan="2" class="center-align">{{mname}}</th>
+                        </tr>
+                        <tr>
+                            <th>緑数字</th>
+                            <td>{{options['green']}}</td>
+                        </tr>
+                        <tr>
+                            <th>SUD+</th>
+                            <td>{{options['sudden']}}</td>
+                        </tr>
+                        <tr>
+                            <th>LIFT/HID+</th>
+                            <td>{{options['hidden']}}</td>
+                        </tr>
+                        <tr>
+                            <th>判定位置</th>
+                            <td>{{options['adjust']}}</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </table>
+                    <div class="row">
+                        <div class="col s12"></div>
+                        <div class="col s4 m3 l2 offset-s1 offset-m6 offset-l8">
                             <a href="/editData?sn={{shopname}}&mn={{mname}}" class="btn-small white black-text">編集</a>
-                            <a href="/delete?sn={{shopname}}&mn={{mname}}" class="btn-small white black-text deletebtn">削除</a>
-                        </td>
-                    </tr>
-                </table>
+                        </div>
+                        <div class="col s4 m3 l2 offset-s2">
+                            <a href="/delete?sn={{shopname}}&mn={{mname}}"
+                               class="btn-small white black-text deletebtn">削除</a>
+                        </div>
+                    </div>
                 </div>
-                
-            {% endfor %}
+
+                {% endfor %}
             </div>
         </li>
-    {% endfor %}
+        {% endfor %}
     </ul>
     {% endif %}
     <a href="/addData" class="btn">新しい筐体情報を追加</a>
 </div>
 <script>
-    $(document).ready(function(){
+    $(document).ready(function () {
         $('.collapsible').collapsible();
 
-        $('.deletebtn').click(()=>{
-            if(!confirm('削除してもよろしいですか？')){
+        $('.deletebtn').click(() => {
+            if (!confirm('削除してもよろしいですか？')) {
                 return false;
             }
         })

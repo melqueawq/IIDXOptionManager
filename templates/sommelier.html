@@ -1,5 +1,10 @@
 {% extends "layout.html" %}
 {% block content %}
+<style>
+    .col>.btn-small {
+        width: 100%;
+    }
+</style>
 
 <div class="container">
     {% if not json%}
@@ -33,14 +38,21 @@
                             <th>メモ</th>
                             <td>{{options['impression']}}</td>
                         </tr>
+
                         <tr>
                             <td></td>
-                            <td class="right-align">
-                                <a href="/editData?sn={{shopname}}&mn={{mname}}"
-                                   class="btn-small white black-text">編集</a>
-                            </td>
+                            <td></td>
                         </tr>
                     </table>
+                    <div class="row">
+                        <div class="col s4 m3 l2 offset-s1 offset-m6 offset-l8">
+                            <a href="/editData?sn={{shopname}}&mn={{mname}}" class="btn-small white black-text">編集</a>
+                        </div>
+                        <div class="col s4 m3 l2 offset-s2">
+                            <a href="/delete?sn={{shopname}}&mn={{mname}}"
+                               class="btn-small white black-text deletebtn">削除</a>
+                        </div>
+                    </div>
                 </div>
 
                 {% endfor %}
@@ -54,6 +66,12 @@
 <script>
     $(document).ready(function () {
         $('.collapsible').collapsible();
+
+        $('.deletebtn').click(() => {
+            if (!confirm('削除してもよろしいですか？')) {
+                return false;
+            }
+        })
     });
 </script>
 {% endblock %}
