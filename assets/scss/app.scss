@@ -1,33 +1,17 @@
-/*// ==========================================================================
-// Foundation
-// ==========================================================================*/
+@import 'foundation/_animation.scss';
+@import 'foundation/_base.scss';
+@import 'foundation/_font.scss';
+@import 'foundation/_reset.scss';
+@import 'foundation/_var.scss';
 
-@import 'foundation/*.scss';
+@import 'layout/_footer.scss';
+@import 'layout/_header.scss';
+@import 'layout/_main.scss';
+@import 'layout/_sidebar.scss';
 
-/*// ==========================================================================
-// Layout
-// ==========================================================================*/
+@import 'object/component/_btn.scss';
+@import 'object/component/_modal.scss';
 
-@import 'layout/*.scss';
+// @import 'object/project/*.scss';
 
-/*// ==========================================================================
-// Object
-// ==========================================================================*/
-
-/*// -----------------------------------------------------------------
-// Component
-// -----------------------------------------------------------------*/
-
-@import 'object/component/*.scss';
-
-/*// -----------------------------------------------------------------
-// Project
-// -----------------------------------------------------------------*/
-
-@import 'object/project/*.scss';
-
-/*// -----------------------------------------------------------------
-// Utility
-// -----------------------------------------------------------------*/
-
-@import 'object/utility/*.scss';
+@import 'object/utility/_util.scss';

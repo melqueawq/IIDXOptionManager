@@ -1,3 +1,337 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+img {
+  width: 100%;
+  vertical-align: middle;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
 body {
-  background-color: #888;
+  font-family: Hiragino Kaku Gothic ProN, 'ヒラギノ角ゴ ProN W3', Roboto, 'Droid Sans', Meiryo, 'メイリオ', Verdana,
+    'ＭＳ Ｐゴシック', sans-serif;
+  color: #333;
+}
+
+html {
+  color: #000;
+  background: #fff;
+}
+
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+code,
+form,
+fieldset,
+legend,
+input,
+textarea,
+p,
+blockquote,
+th,
+td,
+figure {
+  margin: 0;
+  padding: 0;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+fieldset,
+img {
+  border: 0;
+}
+
+address,
+caption,
+cite,
+code,
+dfn,
+em,
+strong,
+th,
+var {
+  font-style: normal;
+  font-weight: normal;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+caption,
+th {
+  text-align: left;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 100%;
+  font-weight: normal;
+}
+
+q:before,
+q:after {
+  content: '';
+}
+
+abbr,
+acronym {
+  border: 0;
+  font-variant: normal;
+}
+
+sup {
+  vertical-align: text-top;
+}
+
+sub {
+  vertical-align: text-bottom;
+}
+
+input,
+textarea,
+select {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+input,
+textarea,
+select {
+  *font-size: 100%;
+}
+
+legend {
+  color: #000;
+}
+
+#yui3-css-stamp.cssreset {
+  display: none;
+}
+
+ul {
+  list-style-type: none;
+}
+
+input,
+textarea,
+select {
+  border: none;
+  border-radius: 0;
+  box-sizing: border-box;
+  background: none;
+  outline: none;
+  appearance: none;
+}
+
+select::-ms-expand {
+  display: none;
+}
+
+input::-ms-expand {
+  display: none;
+}
+
+input[type='radio'] {
+  display: none;
+}
+
+textarea {
+  resize: none;
+}
+
+html {
+  color: #000;
+  background: #fff;
+}
+
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+code,
+form,
+fieldset,
+legend,
+input,
+textarea,
+p,
+blockquote,
+th,
+td,
+figure {
+  margin: 0;
+  padding: 0;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+fieldset,
+img {
+  border: 0;
+}
+
+address,
+caption,
+cite,
+code,
+dfn,
+em,
+strong,
+th,
+var {
+  font-style: normal;
+  font-weight: normal;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+caption,
+th {
+  text-align: left;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 100%;
+  font-weight: normal;
+}
+
+q:before,
+q:after {
+  content: '';
+}
+
+abbr,
+acronym {
+  border: 0;
+  font-variant: normal;
+}
+
+sup {
+  vertical-align: text-top;
+}
+
+sub {
+  vertical-align: text-bottom;
+}
+
+input,
+textarea,
+select {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+input,
+textarea,
+select {
+  *font-size: 100%;
+}
+
+legend {
+  color: #000;
+}
+
+#yui3-css-stamp.cssreset {
+  display: none;
+}
+
+ul {
+  list-style-type: none;
+}
+
+input,
+textarea,
+select {
+  border: none;
+  border-radius: 0;
+  box-sizing: border-box;
+  background: none;
+  outline: none;
+  appearance: none;
+}
+
+select::-ms-expand {
+  display: none;
+}
+
+input::-ms-expand {
+  display: none;
+}
+
+input[type='radio'] {
+  display: none;
+}
+
+textarea {
+  resize: none;
+}
+
+.u-hidden {
+  display: none !important;
+}
+
+@media screen and (max-width: 768px) {
+  .u-hidden-sp {
+    display: none !important;
+  }
+}
+
+@media print, screen and (min-width: 769px) {
+  .u-hidden-pc {
+    display: none !important;
+  }
 }
