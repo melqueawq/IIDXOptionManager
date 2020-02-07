@@ -1,69 +1,14 @@
 <html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="../static/css/app.css" />
+    <link rel="stylesheet" href="../static/tools/style/reset.css" />
+    <title>Brasil</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js"
-          integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <title>IIDXOptionManager</title>
-
-  <style>
-    .container {
-      padding-top: 1em;
-    }
-  </style>
-</head>
-
-<body>
-  <nav>
-    <div class="nav-wrapper black">
-      {% if 'screen_name' in session %}
-      <a href="/stats" class="brand-logo">IIDXOptionManager</a>
-      {% else %}
-      <a href="/" class="brand-logo">IIDXOptionManager</a>
-      {% endif %}
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="/addData">Add Data</a></li>
-        <li><a href="/stats">Stats</a></li>
-        <li><a href="/sommelier">Sommelier</a></li>
-        {% if 'screen_name' in session %}
-        <li><a href="/logout">Logout</a></li>
-        {% else %}
-        <li><a href="/login">Login</a></li>
-        {% endif %}
-      </ul>
-
-      <a href="#" data-target="slide-out" class="sidenav-trigger">
-        <i class="material-icons">menu</i>
-      </a>
-    </div>
-  </nav>
-
-  <ul id="slide-out" class="sidenav">
-    <li><a class="subheader">IIDXOptionManager MENU</a></li>
-    <li><a href="/addData"><i class="material-icons">add_circle_outline</i>Add Data</a></li>
-    <li><a href="/stats"><i class="material-icons">account_circle</i>Stats</a></li>
-    <li><a href="/sommelier"><i class="material-icons">thumbs_up_down</i>Sommelier</a></li>
-    {% if 'screen_name' in session %}
-    <li><a href="/logout"><i class="material-icons">exit_to_app</i>Logout</a></li>
-    {% else %}
-    <li><a href="/login"><i class="material-icons">exit_to_app</i>Login</a></li>
-    {% endif %}
-  </ul>
-
-  {% block content %}
-  {% endblock %}
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      var elems = document.querySelectorAll('.sidenav');
-      var instances = M.Sidenav.init(elems, {});
-    });
-  </script>
-</body>
-
+  <body>
+    {% block content %} {% endblock %}
+  </body>
 </html>
