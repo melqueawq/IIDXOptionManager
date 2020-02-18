@@ -7,10 +7,15 @@ from .twmng import twitter_api
 import json
 import os
 
-
+# root
 @app.route('/')
 def index():
     return render_template('index.html')
+
+# Let's encrypt
+@app.route('/.well-known/acme-challenge/<filename>')
+def well_known(filename):
+    return render_template('.well_known/acme_challenge/' + filename)
 
 
 @app.route('/addData', methods=['GET'])
@@ -55,7 +60,7 @@ def delete():
 
     return redirect(url_for('stats'))
 
-
+# hi-speed stat
 @app.route('/stats', methods=['GET'])
 def stats():
     if('screen_name' not in session):
@@ -66,7 +71,7 @@ def stats():
 
     return render_template('stats.html', json=j)
 
-
+# machine sommelier
 @app.route('/sommelier')
 def sommelier():
     if('screen_name' not in session):
